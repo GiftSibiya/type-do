@@ -2,7 +2,6 @@
 
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import UserRouters from "./routes/UserRoutes.js";
 import BookRouters from "./routes/BookRoutes.js";
 // import bodyParser from "body-parser";
