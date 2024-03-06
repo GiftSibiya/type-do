@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Book {
   id: number;
@@ -36,7 +37,9 @@ const BookTile: React.FC<BookTileProps> = ({ book }) => {
         <p className="text-center text-xs pb-2">{book.desc}</p>
       </div>
       <div className="">
-        <button className="text-sm text-green-400 mx-2">Update</button>
+        <button className="text-sm text-green-400 mx-2">
+          <Link to={`/Update/${book.id}`}>Update</Link>
+        </button>
         <button
           onClick={() => HandleDelete(book.id)}
           className="text-sm text-red-400 mx-2"
