@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookTile from "../../components/BookTile";
 import { useNavigate } from "react-router";
+import NavBar from "../../components/NavBar";
 
 function Home() {
   // HOOKS //
@@ -37,24 +38,30 @@ function Home() {
   };
 
   return (
-    <div className="flex  flex-col items-center border-2 border-red-800 md:grid-cols-2 bg-slate-600 h-screen w-screen md:bg-green-600 ">
-      <div>
-        <h1 className=" text-white"> Book Store</h1>
-        <div className="grid grid-cols-4 gap-2 ">
-          {books.map((book) => (
-            <BookTile key={book.id} book={book} />
-          ))}
+    <>
+      <NavBar />
+      <div className=" bg-gray-300 flex flex-col items-center h-auto pt-[50px]  ">
+        <div>
+          <h1 className=" my-[20px] text-center font-semibold">
+            {" "}
+            BROWSE YOUR COLLECTION OF BOOKS
+          </h1>
+          <div className="grid grid-cols-4 gap-2 ">
+            {books.map((book) => (
+              <BookTile key={book.id} book={book} />
+            ))}
+          </div>
+        </div>
+        <div>
+          <button
+            onClick={HandleAddBook}
+            className="bg-green-600 p-2 rounded-md my-2 text-white font-bold"
+          >
+            Add Book
+          </button>
         </div>
       </div>
-      <div>
-        <button
-          onClick={HandleAddBook}
-          className="bg-slate-300 p-2 rounded-md my-2"
-        >
-          Add Book
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
 

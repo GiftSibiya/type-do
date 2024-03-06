@@ -27,9 +27,7 @@ const HandleDelete = async (id: number) => {
 const BookTile: React.FC<BookTileProps> = ({ book }) => {
   return (
     <div className="flex flex-col items-center justify-around bg-white w-[150px] h-[250px] rounded-sm">
-      <div className=" mt-2 bg-gray-400 h-[200px] w-[80%]">
-        <div>{book.cover}</div>
-      </div>
+      <div className=" mt-2 bg-gray-400 h-[250px] w-[80%]"></div>
       <div>
         <div className="flex w-[100%] justify-between px-[20px] mb-5">
           <div className=" text-sm overflow-hidden h-[20px]">{book.title}</div>

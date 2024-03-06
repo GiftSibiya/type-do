@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import NavBar from "./NavBar";
 
 function UpdateBook() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function UpdateBook() {
   const HandleChange = (e: any) => {
     setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
+  const HandleCancel = () => [navigate("/Home")];
   const bookId = location.pathname.split("/")[2];
 
   console.log(bookId);
@@ -30,38 +31,48 @@ function UpdateBook() {
   };
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      <div className="flex flex-col items-center h-[400px] w-[300px] ">
-        <h1>Update this Book</h1>
+    <>
+      <NavBar />
+      <div className="  flex flex-col justify-center items-center bg-slate-400 h-screen w-screen">
+        <h2 className="font-bold text-[30px]">Update An Existing Book </h2>
         <input
+          className="my-1 w-[300px] p-2 rounded-[10px] border-[2px] border-gray-500"
           onChange={HandleChange}
-          placeholder="Title"
-          name="title"
           value={book.title}
-          className="border-gray-800 border-[1px] w-[200px] my-2  p-2  "
+          placeholder="Book title"
+          name="title"
         ></input>
         <input
-          placeholder="Description"
-          name="desc"
+          className="my-1 w-[300px] p-2 rounded-[10px] border-[2px] border-gray-500"
           onChange={HandleChange}
+          placeholder="Book Description"
           value={book.desc}
-          className="border-gray-800 border-[1px] w-[200px] my-2  p-2  "
+          name="desc"
         ></input>
         <input
-          placeholder="Cover"
-          name="cover"
+          className="my-1 w-[300px] p-2 rounded-[10px] border-[2px] border-gray-500"
           onChange={HandleChange}
           value={book.cover}
-          className="border-gray-800 border-[1px]  w-[200px] my-2 p-2  "
+          placeholder="Book Price"
+          name="cover"
         ></input>
-        <button
-          onClick={HandleUpdate}
-          className="w-[200px] bg-orange-500 text-white p-2 "
-        >
-          Update Details
-        </button>
+        <div className="my-2">
+          <button
+            onClick={HandleCancel}
+            className="bg-red-800 p-2 rounded-md w-[120px] mx-2 text-white font-bold"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={HandleUpdate}
+            className="bg-green-800 p-2 rounded-md w-[120px] mx-2 mx-2 text-white font-bold"
+          >
+            Update Book
+          </button>
+        </div>
       </div>
-    </div>
+      {/* ------ */}
+    </>
   );
 }
 
