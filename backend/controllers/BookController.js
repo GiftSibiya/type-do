@@ -22,8 +22,22 @@ const GetBooks = async (req, res) => {
 
 const AddBooks = async (req, res) => {
   try {
-    res.json("You're Trying to add a book");
-  } catch (error) {}
+    const q = "INSERT INTO books (`title`, `desc`, `cover`) VALUES (?, ?, ?)";
+
+    const values = [req.body.title, req.body.desc, req.body.cover];
+
+    db.query(q, values, (error, result) => {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ error: `Internal Server Error ${req}` });
+      } else {
+        res.status(201).json("Book Created Successfully");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 // UPDATE BOOKS //

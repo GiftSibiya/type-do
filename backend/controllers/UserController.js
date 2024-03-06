@@ -5,7 +5,7 @@ import { db } from "../utils/DbConfig.js";
 
 const GetUser = async (req, res) => {
   try {
-    const q = "SELECT * FROM test.books";
+    const q = "SELECT * FROM test.user";
     db.query(q, (error, result) => {
       if (error) {
         console.log(error);
