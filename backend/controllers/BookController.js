@@ -3,7 +3,7 @@ import { db } from "../utils/DbConfig.js";
 
 // GET BOOKS //
 
-const GetUser = async (req, res) => {
+const GetBooks = async (req, res) => {
   try {
     const q = "SELECT * FROM test.books";
     db.query(q, (error, result) => {
@@ -20,20 +20,24 @@ const GetUser = async (req, res) => {
 
 // ADD BOOKS //
 
-const AddUser = async (req, res) => {
+const AddBooks = async (req, res) => {
   try {
     res.json("You're Trying to add a book");
   } catch (error) {}
 };
-const UpdateUser = async (req, res) => {
+
+// UPDATE BOOKS //
+const UpdateBooks = async (req, res) => {
   try {
     res.json("You dare alter the ancient texts");
   } catch (error) {}
 };
-const DeleteUser = async (req, res) => {
+
+// DELETE BOOKS //
+const DeleteBooks = async (req, res) => {
   try {
     res.json("You've burned them all you fiend");
   } catch (error) {}
 };
 
-export { GetUser, AddUser, UpdateUser, DeleteUser };
+export { GetBooks, AddBooks, UpdateBooks, DeleteBooks };

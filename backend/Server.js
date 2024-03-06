@@ -2,12 +2,14 @@
 
 import express from "express";
 import cors from "cors";
-import routers from "./routes/Routes.js";
+import UserRouters from "./routes/UserRoutes.js";
+import BookRouters from "./routes/BookRoutes.js";
 // import bodyParser from "body-parser";
 
 const app = express();
 app.use(cors());
-app.use("/api", routers);
+app.use("/book", BookRouters);
+app.use("/User", UserRouters);
 // app.use(bodyParser());
 
 app.listen(4000, () => {
