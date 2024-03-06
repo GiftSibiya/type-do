@@ -5,7 +5,7 @@ import { db } from "../utils/DbConfig.js";
 
 const GetUser = async (req, res) => {
   try {
-    const q = "SELECT * FROM test.user";
+    const q = " SELECT * FROM test.user";
     db.query(q, (error, result) => {
       if (error) {
         console.log(error);
@@ -18,13 +18,23 @@ const GetUser = async (req, res) => {
   }
 };
 
-// ADD BOOKS //
+// ADD USER //
 
 const AddUser = async (req, res) => {
   try {
-    res.json("You're Trying to add a book");
+    const q =
+      "INSERT INTO test.user ( `FullName`, `Email`, `Password`) VALUES (?, ?, ?)";
+    const Values = [req.body.FullName, req.body.Email, req.body.Password];
+    db.query(q, Values, (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        res.json("User Added Successfully");
+      }
+    });
   } catch (error) {}
 };
+
 const UpdateUser = async (req, res) => {
   try {
     res.json("You dare alter the ancient texts");
