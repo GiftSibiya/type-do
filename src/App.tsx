@@ -1,12 +1,25 @@
+// IMPORT DEPENDENICES //
 import React from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// IMPORT FILES //
+import Login from "./screens/auth/Login";
+import SignUp from "./screens/auth/SignUp";
+import Home from "./screens/home/Home";
+
+// RETURN //
 function App() {
   return (
-    <div>
-      <h1>Hello world!</h1>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        (// AUTH PAGES //)
+        <Route path="/" Component={Login} />
+        <Route path="/SignUp" Component={SignUp} />
+        (// HOME SCREEN //)
+        <Route path="/Home" Component={Home}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
