@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./screens/auth/Login";
 import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/home/Home";
-
 // RETURN //
 function App() {
   return (
