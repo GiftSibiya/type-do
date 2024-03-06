@@ -1,5 +1,6 @@
 import express from "express";
 import { db } from "../utils/DbConfig.js";
+import { error } from "console";
 
 // GET BOOKS //
 
@@ -50,7 +51,15 @@ const UpdateBooks = async (req, res) => {
 // DELETE BOOKS //
 const DeleteBooks = async (req, res) => {
   try {
-    res.json("You've burned them all you fiend");
+    const BookId = req.params.id;
+    const q = "DELETE FROM books WHERE id = ?";
+    db.query(q, BookId, (err, result) => {
+      if (error) {
+        res.json(`Error Deleting file ${error}`);
+      } else {
+        res.json("Book Deleted Successfully");
+      }
+    });
   } catch (error) {}
 };
 
