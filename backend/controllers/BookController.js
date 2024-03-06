@@ -44,8 +44,21 @@ const AddBooks = async (req, res) => {
 // UPDATE BOOKS //
 const UpdateBooks = async (req, res) => {
   try {
-    res.json("You dare alter the ancient texts");
-  } catch (error) {}
+    const BookId = req.params.id;
+    const q = "UPDATE books SET `title`=?, `desc`=?, `cover`=?  WHERE id = ?";
+
+    const values = [req.body.title, req.body.desc, req.body.cover, BookId];
+    db.query(q, values, (err, result) => {
+      if (err) {
+        res.status(500).json(`Error Updating Book: ${err.message}`);
+      } else {
+        res.status(200).json("Book Updated Successfully");
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Internal Server Error");
+  }
 };
 
 // DELETE BOOKS //
