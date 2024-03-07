@@ -1,11 +1,17 @@
 // IMPORT DEPENDENCIES //
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import BookTile from "../../components/BookTile";
+import { useNavigate } from "react-router";
+import NavBar from "../../components/NavBar";
 
 function Home() {
   // HOOKS //
   const [books, setBooks] = useState<Book[]>([]);
 
+  const navigate = useNavigate();
+
+  // AXIOS REQUEST BOOKS
   useEffect(() => {
     const FetchAllBooks = async () => {
       try {
@@ -27,19 +33,35 @@ function Home() {
     // Add other properties if needed
   }
 
+  const HandleAddBook = () => {
+    navigate("/AddBook");
+  };
+
   return (
-    <div className="flex justify-around sm:flex-row flex-col items-center border-2 border-red-800 md:grid-cols-2 bg-slate-600 h-screen w-screen md:bg-green-600 ">
-      <div>
-        <h1 className="text-3xl font-bold">Welcome to the Home screen</h1>
-        {books.map((book) => (
-          <div key={book.id}>
-            {book.cover && <img src={book.cover} alt="" />}
-            <h2>{book.title}</h2>
-            <p>{book.desc}</p>
+    <>
+      <NavBar />
+      <div className=" bg-gray-300 flex flex-col items-center h-auto pt-[50px]  ">
+        <div>
+          <h1 className=" my-[20px] text-center font-semibold">
+            {" "}
+            BROWSE YOUR COLLECTION OF BOOKS
+          </h1>
+          <div className="grid grid-cols-4 gap-2 ">
+            {books.map((book) => (
+              <BookTile key={book.id} book={book} />
+            ))}
           </div>
-        ))}
+        </div>
+        <div>
+          <button
+            onClick={HandleAddBook}
+            className="bg-green-600 p-2 rounded-md my-2 text-white font-bold"
+          >
+            Add Book
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

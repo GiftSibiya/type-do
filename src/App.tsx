@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./screens/auth/Login";
 import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/home/Home";
+import AddBook from "./components/AddBook";
+import UpdateBook from "./components/UpdateBook";
 // RETURN //
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/SignUp" Component={SignUp} />
         (// HOME SCREEN //)
         <Route path="/Home" Component={Home}></Route>
+        <Route path="/AddBook" Component={AddBook} />
+        <Route path="/Update/:id" Component={UpdateBook} />
       </Routes>
     </BrowserRouter>
   );

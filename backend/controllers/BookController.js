@@ -1,5 +1,6 @@
 import express from "express";
 import { db } from "../utils/DbConfig.js";
+import { error } from "console";
 
 // GET BOOKS //
 
@@ -43,14 +44,35 @@ const AddBooks = async (req, res) => {
 // UPDATE BOOKS //
 const UpdateBooks = async (req, res) => {
   try {
-    res.json("You dare alter the ancient texts");
-  } catch (error) {}
+    const BookId = req.params.id;
+    const q = "UPDATE books SET `title`=?, `desc`=?, `cover`=?  WHERE id = ?";
+
+    const values = [req.body.title, req.body.desc, req.body.cover, BookId];
+    db.query(q, values, (err, result) => {
+      if (err) {
+        res.status(500).json(`Error Updating Book: ${err.message}`);
+      } else {
+        res.status(200).json("Book Updated Successfully");
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Internal Server Error");
+  }
 };
 
 // DELETE BOOKS //
 const DeleteBooks = async (req, res) => {
   try {
-    res.json("You've burned them all you fiend");
+    const BookId = req.params.id;
+    const q = "DELETE FROM books WHERE id = ?";
+    db.query(q, BookId, (err, result) => {
+      if (error) {
+        res.json(`Error Deleting file ${error}`);
+      } else {
+        res.json("Book Deleted Successfully");
+      }
+    });
   } catch (error) {}
 };
 

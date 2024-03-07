@@ -10,7 +10,7 @@ const BookRouter = express.Router();
 
 BookRouter.get("/", GetBooks);
 BookRouter.post("/AddBook", AddBooks);
-BookRouter.put("/", UpdateBooks);
-BookRouter.delete("/", DeleteBooks);
+BookRouter.put("/UpdateBook/:id", UpdateBooks);
+BookRouter.delete("/DeleteBook/:id", DeleteBooks);
 
 export default BookRouter;
